@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+    <filter>
+        <filter-name>RequestLogFilter</filter-name>
+        <filter-class>ro.uaic.info.laborator_2.RequestLogFilter</filter-class>
+        <init-param>
+            <param-name>logFile</param-name>
+            <param-value>lab2HomeworkLog</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>RequestLogFilter</filter-name>
+        <url-pattern>/lab2Homework/*</url-pattern>
+        <servlet-name>Controller</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter>
+        <filter-name>PageDecoratorFilter</filter-name>
+        <filter-class>ro.uaic.info.laborator_2.PageDecoratorFilter</filter-class>
+        <init-param>
+            <param-name>preludeText</param-name>
+            <param-value>header</param-value>
+        </init-param>
+        <init-param>
+            <param-name>codaText</param-name>
+            <param-value>footer</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>PageDecoratorFilter</filter-name>
+        <url-pattern>/lab2Homework/result.jsp</url-pattern>
+        <servlet-name>Controller</servlet-name>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+</web-app>
